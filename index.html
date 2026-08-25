@@ -49,16 +49,8 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
   position:relative;display:flex;flex-direction:column}
 
 /* barra de estado */
-.status{height:50px;flex:0 0 50px;display:flex;align-items:flex-end;justify-content:space-between;
+.status{height:50px;flex:0 0 50px;display:flex;align-items:flex-end;
   padding:0 26px 7px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.9);z-index:20;position:relative}
-.status .r{display:flex;align-items:center;gap:5px}
-.bars{display:flex;align-items:flex-end;gap:2px;height:11px}
-.bars i{width:3px;background:rgba(255,255,255,.9);border-radius:1px}
-.bars i:nth-child(1){height:4px}.bars i:nth-child(2){height:6px}
-.bars i:nth-child(3){height:8.5px}.bars i:nth-child(4){height:11px}
-.bat{width:24px;height:12px;border:1.4px solid rgba(255,255,255,.6);border-radius:3.5px;position:relative;padding:1.5px}
-.bat::after{content:"";position:absolute;right:-3.5px;top:3.5px;width:2px;height:4px;background:rgba(255,255,255,.45);border-radius:0 1px 1px 0}
-.bat i{display:block;height:100%;width:72%;background:var(--brand-bright);border-radius:1.5px}
 
 /* ============ PILA DE PANTALLAS ============ */
 .stack{flex:1;position:relative;overflow:hidden}
@@ -383,11 +375,6 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
     <div class="phone">
       <div class="status">
         <span>8:14</span>
-        <span class="r">
-          <span class="bars"><i></i><i></i><i></i><i></i></span>
-          <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 10.5l2-2.2a2.9 2.9 0 00-4 0L8 10.5z" fill="rgba(255,255,255,.9)"/><path d="M3.4 5.6a6.8 6.8 0 019.2 0" stroke="rgba(255,255,255,.9)" stroke-width="1.4" stroke-linecap="round"/><path d="M1 3a10.2 10.2 0 0114 0" stroke="rgba(255,255,255,.5)" stroke-width="1.4" stroke-linecap="round"/></svg>
-          <span class="bat"><i></i></span>
-        </span>
       </div>
 
       <div class="stack" id="stack"></div>
