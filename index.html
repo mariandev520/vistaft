@@ -390,7 +390,7 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
       <aside class="drawer" id="drawer">
         <div class="who">
           <span class="av">JP</span>
-          <span><span class="t">Juan Pérez</span><span class="m">Repositor · Zona Mar del Plata</span></span>
+          <span><span class="t">Yago Alonso</span><span class="m">Repositor · Zona Mar del Plata</span></span>
         </div>
         <div class="body" id="drawerBody"></div>
         <div class="dfoot">
@@ -411,7 +411,7 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
           <h2>Tu ruta<br>empieza <span>acá.</span></h2>
           <p class="sub">Entrá con tu legajo para ver las tareas asignadas del día.</p>
 
-          <div class="hint"><span>👋</span><span>Boceto de demostración: tocá <b>Ingresar</b>, no hace falta contraseña.</span></div>
+          <div class="hint"><span>👋</span><span>Boceto test App WebApp o Nativa tocá <b>Ingresar</b>, no hace falta contraseña.</span></div>
 
           <label class="field">
             <span class="fi">👤</span>
@@ -434,7 +434,7 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
           <button class="btn" id="lgBtn">Ingresar</button>
           <button class="btn ghost" id="lgBio">👆 Ingresar con huella</button>
 
-          <p class="legal"><b>Distribuidora Vital · Ruta MDP</b><br>
+          <p class="legal"><b>FulltimeGroup · Zona MDP</b><br>
             Versión 0.4 · boceto sin conexión a servidores</p>
         </div>
       </div>
@@ -444,7 +444,7 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
   </div>
 
   <div class="caption">
-    <b>Boceto de la app móvil</b>
+    <b>Test app móvil</b>
     Vista de campo para el repositor.
     <ul>
       <li>Menú lateral con las seis secciones.</li>
@@ -457,29 +457,36 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
 <script>
 /* ==================== DATOS ==================== */
 const SUCS = [
-  {n:'Carrefour Catamarca',      cad:'Carrefour', col:'blue',   z:'Catamarca 1800 · Centro',  ic:'🛒'},
-  {n:'Carrefour Córdoba',        cad:'Carrefour', col:'blue',   z:'Av. Córdoba · Centro',     ic:'🛒'},
-  {n:'Vea Luro',                 cad:'Vea',       col:'yellow', z:'Av. Luro · Centro',        ic:'🛒'},
-  {n:'Vea Edison',               cad:'Vea',       col:'yellow', z:'Edison · Puerto',          ic:'🛒'},
-  {n:'Disco San Luis',           cad:'Disco',     col:'red',    z:'San Luis · Centro',        ic:'🛒'},
-  {n:'Disco Rawson',             cad:'Disco',     col:'red',    z:'Rawson · Plaza Mitre',     ic:'🛒'},
-  {n:'Disco J. B. Justo',        cad:'Disco',     col:'red',    z:'J. B. Justo · San Juan',   ic:'🛒'},
-  {n:'Riadigos Rivadavia 3050',  cad:'Riadigos',  col:'green',  z:'Rivadavia 3050',           ic:'🛒'},
-  {n:'Riadigos Alvarado 1',      cad:'Riadigos',  col:'green',  z:'Alvarado 1',               ic:'🛒'},
-  {n:'Previley Luro 3804',       cad:'Previley',  col:'purple', z:'Luro 3804',                ic:'💊'},
-  {n:'Previley San Martín 5521', cad:'Previley',  col:'purple', z:'San Martín 5521',          ic:'💊'},
-  {n:'Pharmagap Rivadavia 3201', cad:'Farmacias', col:'brown',  z:'Rivadavia 3201',           ic:'💊'},
-  {n:'Pharmadiet Güemes y San.', cad:'Farmacias', col:'brown',  z:'Güemes y San.',            ic:'💊'},
-  {n:'Oceanfarma Alem 3565',     cad:'Farmacias', col:'brown',  z:'Alem 3565',                ic:'💊'},
-  {n:'López Peña 2535',          cad:'Farmacias', col:'brown',  z:'López Peña 2535',          ic:'💊'},
+  {n:'Carrefour Ruta 2 ',      cad:'Carrefour', col:'blue',   z:'Av Constitucion y Ruta 2 7599',  ic:'🛒'},
+  {n:'Disco Constitucion ',        cad:'Cencosud', col:'blue',   z:'Constitucion 6098',     ic:'🛒'},
+  {n:'Easy',                 cad:'Cencosud',       col:'yellow', z:'Av Della Paolera, RP2',        ic:'🛒'},
+  {n:'Cooperativa Obrera',               cad:'Coo.Obrera',       col:'yellow', z:'Av Constitucion 6581',          ic:'🛒'},
+  {n:'Toledo ',           cad:'Sup.Toledo',     col:'red',    z:'Libertad 5750(Hiper)',        ic:'🛒'},
+  {n:'Riadigos',             cad:'Riadigos',     col:'red',    z:'AV Constitucion 4793',     ic:'🛒'},
+
 ];
 const CLIENTES = [
   {n:'Fecovita',        e:'🍷', cat:'Bodega',      cols:['#7E3B4A','#A85A6B','#5E2A36']},
-  {n:'Yerba Pipore',     e:'🧉', cat:'Yerba mate',  cols:['#3FDCA3','#2A8C68','#1F6B50']},
-  {n:'Aceite Zuelo',    e:'🫒', cat:'Almacén',     cols:['#D9B45E','#B4913F','#8C6F2C']},
-  {n:'Arroz Gallo',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
-  {n:'Jugo Puro Sol',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
-  {n:'Cafe Cruzeiro', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
+  {n:'Pipore',     e:'🧉', cat:'Yerba mate',  cols:['#3FDCA3','#2A8C68','#1F6B50']},
+  {n:'Zucardi',    e:'🫒', cat:'Almacén',     cols:['#D9B45E','#B4913F','#8C6F2C']},
+  {n:'Fecovita',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
+  {n:'Godrej',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
+  {n:'Speed', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
+    {n:'Cbse',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
+  {n:'Jorgito',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
+  {n:'Norton', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
+    {n:'Prodea',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
+  {n:'Sancor',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
+  {n:'LLorente', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
+    {n:'Los Haroldos',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
+  {n:'Sunstar',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
+  {n:'Danica', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
+    {n:'Quento',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
+  {n:'Rotoplas',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
+  {n:'Noly', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
+    {n:'Benevia',      e:'🍚', cat:'Almacén',     cols:['#8A9A92','#B7C4BC','#6E7C75']},
+  {n:'Nutreco',     e:'🧃', cat:'Bebidas',     cols:['#E08770','#C56A52','#A8523C']},
+  {n:'Lpsa Betanin', e:'☕', cat:'Desayuno',    cols:['#603B2C','#8A5A44','#4A2C20']},
 ];
 const ACCIONES = [
   {k:'stock',     t:'Tomar stock en góndola', m:'Contar unidades por SKU',            e:'📦'},
