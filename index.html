@@ -301,82 +301,79 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
 
 .stagger > *{animation:fadeIn .32s var(--ease) both}
 
-/* ============ MIS TAREAS · vidrio ============ */
-.tk-hero{position:relative;overflow:hidden;border-radius:19px;margin:8px 0 2px;padding:16px 16px 15px;
-  background:
-    radial-gradient(130% 150% at 10% -30%, rgba(63,220,163,.22), transparent 55%),
-    linear-gradient(160deg, rgba(255,255,255,.11), rgba(255,255,255,.02) 42%),
-    rgba(30,32,34,.5);
-  backdrop-filter:blur(24px) saturate(185%);-webkit-backdrop-filter:blur(24px) saturate(185%);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(255,255,255,.05),
-    0 22px 44px -24px rgba(0,0,0,.72)}
-.tk-hero::after{content:"";position:absolute;right:-30px;top:-40px;width:150px;height:150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(63,220,163,.2),transparent 70%);pointer-events:none}
-.tk-hero .hl{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:7px;position:relative}
-.tk-hero .big{font-size:27px;font-weight:800;letter-spacing:-.02em;color:var(--title);margin:7px 0 0;
-  line-height:1.16;position:relative}
-.tk-hero .big b{color:var(--brand-bright);font-weight:800}
-.tk-stats{display:flex;gap:8px;margin-top:14px;position:relative}
-.tk-stat{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;
-  padding:9px 10px}
-.tk-stat .v{font-size:17px;font-weight:750;color:var(--title);line-height:1.1}
-.tk-stat .v.red{color:var(--t-red)}.tk-stat .v.green{color:var(--t-green)}
-.tk-stat .k{font-size:10px;color:var(--light);letter-spacing:.03em;margin-top:3px;text-transform:uppercase}
+/* ============ MIS TAREAS · tablero estilo Notion ============ */
+.nb-head{margin:8px 0 2px}
+.nb-check{font-size:29px;color:var(--light);display:block;line-height:1;margin-bottom:10px}
+.nb-title{font-size:29px;font-weight:800;letter-spacing:-.02em;color:var(--title);margin:0 0 9px;line-height:1.15}
+.nb-desc{font-size:13.5px;color:var(--muted);margin:0;line-height:1.55;max-width:44ch}
+.nb-desc b{color:var(--text);font-weight:600}
 
-.tk-seg{display:flex;gap:5px;margin:16px 0 6px;padding:3px;border-radius:12px;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.tk-seg button{flex:1;text-align:center;font-size:12.5px;font-weight:600;color:var(--muted);
-  padding:7px 0;border-radius:9px;transition:background .16s,color .16s}
-.tk-seg button.on{background:rgba(255,255,255,.1);color:var(--title);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.16)}
+.nb-viewbar{display:flex;align-items:center;gap:8px;margin:16px 0 2px}
+.nb-viewpill{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--text);
+  padding:6px 11px;border-radius:8px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.nb-vb-icons{margin-left:auto;display:flex;align-items:center;gap:2px}
+.nb-vb-icons button{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:14px;color:var(--muted);transition:background .14s}
+.nb-vb-icons button:active{background:var(--hover)}
+.nb-new{width:auto!important;padding:0 12px!important;font-size:13px;font-weight:600;color:#fff!important;
+  background:#2F82E4!important;border-radius:8px;margin-left:5px}
 
-.tk-wrap[data-f="hoy"] .g-prox{display:none}
-.tk-wrap[data-f="prox"] .g-hoy{display:none}
+/* switch de estados */
+.nb-tabs{display:flex;gap:6px;margin:15px 0 0}
+.nb-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 4px;border-radius:10px;
+  font-size:11.5px;font-weight:600;color:var(--muted);background:var(--surface);
+  box-shadow:inset 0 0 0 1px var(--line);transition:color .16s,background .16s,box-shadow .16s}
+.nb-tab .d{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.5;flex:0 0 7px}
+.nb-tab .n{font-size:10.5px;font-weight:700;min-width:16px;height:16px;padding:0 4px;border-radius:8px;
+  display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);color:var(--text)}
+.nb-tab.c-todo.on {color:#FF9086;background:rgba(255,144,134,.09);box-shadow:inset 0 0 0 1px rgba(255,144,134,.42)}
+.nb-tab.c-doing.on{color:#FFC96B;background:rgba(255,201,107,.09);box-shadow:inset 0 0 0 1px rgba(255,201,107,.42)}
+.nb-tab.c-done.on {color:#5BD9A6;background:rgba(91,217,166,.09);box-shadow:inset 0 0 0 1px rgba(91,217,166,.42)}
+.nb-tab.on .d{opacity:1}
+.nb-tab.on .n{background:rgba(255,255,255,.14)}
 
-.tk-group{margin-top:16px}
-.tk-glabel{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--light);margin-bottom:9px}
-.tk-glabel .dt{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
-.tk-glabel .dt.red{background:var(--t-red);box-shadow:0 0 8px rgba(255,115,105,.7)}
-.tk-glabel .dt.gray{background:var(--light)}
-.tk-glabel .c{margin-left:auto;letter-spacing:0;font-weight:600;font-size:12px;color:var(--muted);
-  background:rgba(255,255,255,.06);border-radius:7px;padding:1px 8px}
+.nb-panel{margin-top:12px;border-radius:14px;padding:10px;border:1px solid var(--line);
+  background:rgba(255,255,255,.02);animation:panelIn .34s var(--ease) both}
+.nb-panel.c-todo {background:linear-gradient(180deg,rgba(255,144,134,.07),transparent 130px)}
+.nb-panel.c-doing{background:linear-gradient(180deg,rgba(255,201,107,.07),transparent 130px)}
+.nb-panel.c-done {background:linear-gradient(180deg,rgba(91,217,166,.07),transparent 130px)}
+@keyframes panelIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.nb-panel-h{display:flex;align-items:center;gap:8px;padding:3px 4px 10px;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--light)}
+.nb-panel-h .sp{margin-left:auto;display:flex;gap:1px}
+.nb-panel-h .sp button{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;color:var(--light)}
+.nb-panel-h .sp button:active{background:var(--hover)}
 
-.trow{position:relative;display:flex;align-items:center;gap:12px;width:100%;
-  padding:12px 13px 12px 16px;margin-bottom:8px;border-radius:15px;overflow:hidden;
-  background:linear-gradient(150deg,rgba(255,255,255,.08),rgba(255,255,255,.02) 46%),rgba(28,30,32,.42);
-  backdrop-filter:blur(18px) saturate(165%);-webkit-backdrop-filter:blur(18px) saturate(165%);
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 16px 32px -24px rgba(0,0,0,.8);
-  transition:transform .16s var(--ease),border-color .16s,background .16s}
-.trow:active{transform:scale(.987);border-color:rgba(255,255,255,.17)}
-.trow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--light);opacity:.5}
-.trow.u-hoy::before{background:linear-gradient(180deg,var(--t-red),#C7473E);opacity:1;
-  box-shadow:0 0 12px rgba(255,115,105,.55)}
-.trow.u-man::before{background:linear-gradient(180deg,var(--t-yellow),#C99433);opacity:1}
-.trow-ic{width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:flex;align-items:center;
-  justify-content:center;font-size:18px;background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
-.trow-main{flex:1;min-width:0}
-.trow-t{display:block;font-size:15.5px;font-weight:650;color:var(--title);overflow:hidden;
+.nb-cards{display:flex;flex-direction:column;gap:9px}
+.nb-card{position:relative;display:block;width:100%;background:var(--surface);border:1px solid var(--border);
+  border-radius:11px;padding:12px 13px;
+  transition:transform .16s var(--ease),background .16s,border-color .16s,opacity .24s var(--ease)}
+.nb-card:active{transform:scale(.986);background:var(--surface-2);border-color:var(--brand-line)}
+.nb-card.out{opacity:0;transform:translateX(44px) scale(.95)}
+.nb-card .ttl{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--title);line-height:1.3}
+.nb-card .ttl .e{font-size:16px;flex:0 0 auto}
+.nb-card .ttl span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nb-card .meta{display:block;font-size:12px;color:var(--muted);margin:5px 0 0 24px;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
-.trow-sub{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;overflow:hidden;
-  text-overflow:ellipsis;white-space:nowrap}
-.trow-tags{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
-.tchip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;line-height:1.4;
-  padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.07);color:var(--muted);
-  border:1px solid rgba(255,255,255,.07)}
-.tchip.hoy{background:rgba(255,115,105,.15);color:#FF9A92;border-color:rgba(255,115,105,.28)}
-.tchip.man{background:rgba(255,201,107,.13);color:#FFD48A;border-color:rgba(255,201,107,.24)}
-.tchip.pend{background:rgba(63,220,163,.12);color:#8FEAC6;border-color:rgba(63,220,163,.24)}
-.trow-side{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:3px}
-.tk-ring{width:46px;height:46px;display:block}
-.tk-ring .bg{stroke:rgba(255,255,255,.11)}
-.tk-ring .fg{stroke:var(--brand-bright);stroke-linecap:round;transition:stroke-dashoffset .95s var(--ease)}
-.tk-ring .np{fill:var(--title);font-weight:750}
-.tk-ring .nl{fill:var(--light)}
-.trow-sl{font-size:9px;color:var(--light);letter-spacing:.05em;text-transform:uppercase}
+.nb-card .props{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0 0 24px}
+.nb-prop{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:500;line-height:1.6;
+  padding:1px 7px;border-radius:5px;background:var(--surface-3);color:var(--muted)}
+.nb-prop.red{background:#5A3330;color:#FF9086}
+.nb-prop.yellow{background:#5B4A22;color:#FFC96B}
+.nb-prop.green{background:#2E5540;color:#5BD9A6}
+.nb-foot{display:flex;gap:7px;margin:11px 0 0 24px}
+.nb-move{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--brand-bright);
+  padding:6px 11px;border-radius:8px;background:var(--brand-dim);box-shadow:inset 0 0 0 1px var(--brand-line);
+  transition:transform .14s var(--ease),background .14s}
+.nb-move:active{transform:scale(.95);background:rgba(63,220,163,.24)}
+.nb-move b{font-size:14px;line-height:1}
+.nb-move.back{color:var(--muted);background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line)}
+.nb-add{display:flex;align-items:center;gap:7px;width:100%;font-size:13px;color:var(--light);
+  padding:12px 6px 4px;font-weight:500}
+.nb-add span{font-size:16px;line-height:1}
+.nb-empty{text-align:center;color:var(--muted);font-size:13px;padding:30px 0 26px}
+.nb-empty .e{font-size:26px;display:block;margin-bottom:8px}
 
 /* ============ PANTALLA DE INGRESO ============ */
 .login{position:absolute;inset:0;z-index:18;background:#080B09;display:flex;flex-direction:column;
@@ -704,7 +701,6 @@ function render(mode){
   /* animar barras y escalonar */
   requestAnimationFrame(()=>{
     el.querySelectorAll('.bar i').forEach(b=>b.style.width = b.dataset.w+'%');
-    el.querySelectorAll('.tk-ring .fg').forEach(c=>c.style.strokeDashoffset = c.dataset.off);
     el.querySelectorAll('.stagger > *').forEach((n,i)=>n.style.animationDelay = Math.min(i*38,340)+'ms');
     const sc = el.querySelector('.scroll'), nav = el.querySelector('.nav');
     if(sc&&nav) sc.addEventListener('scroll',()=>nav.classList.toggle('sticky', sc.scrollTop>6),{passive:true});
@@ -716,9 +712,22 @@ function bind(el){
   el.querySelectorAll('[data-back]').forEach(n=>n.addEventListener('click',pop));
   el.querySelectorAll('[data-menu]').forEach(n=>n.addEventListener('click',openDrawer));
   el.querySelectorAll('[data-toast]').forEach(n=>n.addEventListener('click',()=>toast(n.dataset.toast)));
-  el.querySelectorAll('[data-seg] button').forEach(b=>b.addEventListener('click',()=>{
-    b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
-    const w = el.querySelector('.tk-wrap'); if(w) w.dataset.f = b.dataset.f;
+  el.querySelectorAll('[data-col]').forEach(n=>n.addEventListener('click',()=>{
+    tareaCol = +n.dataset.col; refreshBoard();
+  }));
+  el.querySelectorAll('[data-move]').forEach(n=>n.addEventListener('click',e=>{
+    e.stopPropagation();
+    const id = n.dataset.move, back = n.classList.contains('back');
+    const [sid,cid] = id.split('|');
+    const c = data.find(x=>x.id===sid).clientes.find(x=>x.id===cid);
+    const next = back ? 0 : Math.min(2,(boardState.get(id) ?? 0)+1);
+    if(next===2) c.acc.forEach(a=>a.done=true);
+    else if(next===1){ if(c.acc.every(a=>!a.done)) c.acc[0].done=true; }
+    else c.acc.forEach(a=>a.done=false);
+    boardState.set(id,next);
+    const card = n.closest('.nb-card'); if(card) card.classList.add('out');
+    toast(T_COLS[back?2:next-1].toast);
+    setTimeout(refreshBoard,240);
   }));
   el.querySelectorAll('[data-act]').forEach(n=>n.addEventListener('click',()=>{
     const [sid,cid,k] = n.dataset.act.split('|');
@@ -727,6 +736,7 @@ function bind(el){
     n.classList.toggle('done', a.done);
     n.querySelector('.box').textContent = a.done ? '✓' : '';
     const hechas = c.acc.filter(x=>x.done).length;
+    boardState.set(`${s.id}|${c.id}`, hechas===0 ? 0 : hechas<c.acc.length ? 1 : 2);
     const pb = el.querySelector('#cliBar'), pt = el.querySelector('#cliProg'), cta = el.querySelector('#cliCta');
     if(pb){ pb.style.width = Math.round(hechas/c.acc.length*100)+'%'; }
     if(pt){ pt.textContent = `${hechas} de ${c.acc.length} acciones`; }
@@ -775,75 +785,99 @@ const navBack = (t,sub)=>`<div class="nav"><button class="ib" data-back>‹</but
   <h1>${t}${sub?`<span class="sub">${sub}</span>`:''}</h1>
   <button class="ib" data-toast="Más opciones">···</button></div>`;
 
-/* anillo de avance — el número central son las acciones que quedan pendientes */
-const RING_C = 2 * Math.PI * 18;
-const tkRing = (pend,total)=>`<svg class="tk-ring" viewBox="0 0 46 46" aria-hidden="true">
-    <circle class="bg" cx="23" cy="23" r="18" fill="none" stroke-width="3.4"/>
-    <circle class="fg" cx="23" cy="23" r="18" fill="none" stroke-width="3.4"
-      stroke-dasharray="${RING_C.toFixed(1)}" stroke-dashoffset="${RING_C.toFixed(1)}"
-      data-off="${(RING_C * pend/total).toFixed(1)}" transform="rotate(-90 23 23)"/>
-    <text class="np" x="23" y="22" text-anchor="middle" font-size="13" font-family="Inter,sans-serif">${pend}</text>
-    <text class="nl" x="23" y="31" text-anchor="middle" font-size="7" font-family="Inter,sans-serif">/${total}</text>
-  </svg>`;
-
-const tareaRow = t=>{
-  const u = t.dias===0 ? 'hoy' : t.dias===1 ? 'man' : '';
-  const urg = t.dias===0 ? '<span class="tchip hoy">⏰ Vence hoy</span>'
-    : t.dias===1 ? '<span class="tchip man">Mañana</span>'
-    : `<span class="tchip">📅 ${fCorta(t.vence)}</span>`;
-  return `<button class="trow ${u?'u-'+u:''}" data-go="cliente" data-p="${t.suc.id}|${t.cli.id}">
-    <span class="trow-ic">${t.cli.e}</span>
-    <span class="trow-main">
-      <span class="trow-t">${esc(t.cli.n)}</span>
-      <span class="trow-sub">${t.suc.ic} ${esc(t.suc.n)}</span>
-      <span class="trow-tags">
-        ${urg}
-        <span class="tchip pend">${t.pend} pendiente${t.pend>1?'s':''}</span>
-      </span>
-    </span>
-    <span class="trow-side">${tkRing(t.pend,t.total)}</span>
-  </button>`;
-};
-
 const VIEWS = {};
 
-/* ---- TAREAS ---- */
+/* ---- TAREAS · tablero Notion navegable por estado ---- */
+const T_COLS = [
+  {lbl:'Por hacer', cls:'c-todo',  next:'Empezar',        toast:'Movida a En curso'},
+  {lbl:'En curso',  cls:'c-doing', next:'Marcar listo',   toast:'✓ Relevamiento completado'},
+  {lbl:'Listo',     cls:'c-done',  next:null,             toast:'Tarea reabierta'},
+];
+const boardState = new Map();          // "sid|cid" -> 0|1|2
+let tareaCol = 0;                      // panel visible
+
+function boardItems(){
+  const out = [];
+  data.forEach(s=>s.clientes.forEach(c=>{
+    const id = `${s.id}|${c.id}`;
+    const hechas = c.acc.filter(a=>a.done).length;
+    if(!boardState.has(id))
+      boardState.set(id, hechas===0 ? 0 : hechas<c.acc.length ? 1 : 2);
+    out.push({id, s, c, hechas, total:c.acc.length, resto:c.acc.length-hechas, st:boardState.get(id)});
+  }));
+  return out;
+}
+
+const boardCard = ({id,s,c,resto,total,st})=>{
+  const urg = st===2 ? '<span class="nb-prop green">✓ Completo</span>'
+    : s.dias===0 ? '<span class="nb-prop red">⏰ Vence hoy</span>'
+    : s.dias===1 ? '<span class="nb-prop yellow">Mañana</span>'
+    : `<span class="nb-prop">📅 ${fCorta(s.vence)}</span>`;
+  const est = st===2 ? '' : `<span class="nb-prop">${resto} de ${total} acciones</span>`;
+  const nx = T_COLS[st].next;
+  const move = nx
+    ? `<button class="nb-move" data-move="${id}">${nx} <b>→</b></button>`
+    : `<button class="nb-move back" data-move="${id}">↩ Reabrir</button>`;
+  return `<div class="nb-card" data-go="cliente" data-p="${id}">
+    <span class="ttl"><span class="e">${c.e}</span><span>${esc(c.n)}</span></span>
+    <span class="meta">${s.ic} ${esc(s.n)}</span>
+    <span class="props">${urg}${est}</span>
+    <span class="nb-foot">${move}</span>
+  </div>`;
+};
+
 VIEWS.tareas = ()=>{
-  const totalPend = tareas.reduce((a,t)=>a+t.pend,0);
-  const totalAcc = tareas.reduce((a,t)=>a+t.total,0);
-  const prog = Math.round((totalAcc-totalPend)/totalAcc*100);
-  const vacio = '<div class="trow" style="justify-content:center;color:var(--muted);font-size:13px">Nada por acá 🎉</div>';
+  const items = boardItems();
+  const cnt = [0,1,2].map(k=>items.filter(it=>it.st===k).length);
+  if(tareaCol<0) tareaCol=0; if(tareaCol>2) tareaCol=2;
+  const col = T_COLS[tareaCol];
+  const list = items.filter(it=>it.st===tareaCol);
+  const cards = list.map(boardCard).join('')
+    || `<div class="nb-empty"><span class="e">${tareaCol===2?'📭':'🎉'}</span>${tareaCol===2?'Todavía no cerraste ninguna.':'Nada pendiente en este estado.'}</div>`;
   return `
 ${navTop('Tareas','Asignadas a Yago Alonso')}
 <div class="scroll"><div class="pad">
-  <div class="tk-hero">
-    <span class="hl">📋 Ruta de hoy · ${fCorta(HOY)}</span>
-    <div class="big"><b>${totalPend}</b> acciones pendientes<br>en ${tareas.length} relevamientos</div>
-    <div class="tk-stats">
-      <div class="tk-stat"><div class="v red">${hoyT.length}</div><div class="k">vencen hoy</div></div>
-      <div class="tk-stat"><div class="v">${semT.length}</div><div class="k">próximos días</div></div>
-      <div class="tk-stat"><div class="v green">${prog}%</div><div class="k">completado</div></div>
-    </div>
+  <div class="nb-head">
+    <span class="nb-check">✓</span>
+    <h2 class="nb-title">Mis tareas</h2>
+    <p class="nb-desc">Tablero de relevamientos. Cambiá de estado con las pestañas y tocá <b>→</b> en una tarjeta para pasarla al siguiente.</p>
+  </div>
+  <div class="nb-viewbar">
+    <button class="nb-viewpill" data-toast="Cambiaría de vista">▤ Vista Tablero ⌄</button>
+    <span class="nb-vb-icons">
+      <button data-toast="Buscar">🔍</button>
+      <button data-toast="Filtrar">⚟</button>
+      <button class="nb-new" data-toast="Nueva tarea">＋ Nuevo</button>
+    </span>
   </div>
 
-  <div class="tk-seg" data-seg>
-    <button class="on" data-f="todas">Todas</button>
-    <button data-f="hoy">Hoy</button>
-    <button data-f="prox">Próximos</button>
+  <div class="nb-tabs">
+    ${T_COLS.map((cc,k)=>`<button class="nb-tab ${cc.cls} ${k===tareaCol?'on':''}" data-col="${k}">
+      <span class="d"></span>${cc.lbl}<span class="n">${cnt[k]}</span></button>`).join('')}
   </div>
 
-  <div class="tk-wrap" data-f="todas">
-    <div class="tk-group g-hoy stagger">
-      <div class="tk-glabel"><span class="dt red"></span>Para hoy <span class="c">${hoyT.length}</span></div>
-      ${hoyT.slice(0,6).map(tareaRow).join('') || vacio}
+  <div class="nb-panel ${col.cls}">
+    <div class="nb-panel-h">${col.lbl} · ${list.length}
+      <span class="sp"><button data-toast="Opciones">···</button><button data-toast="Nueva tarjeta">＋</button></span>
     </div>
-    <div class="tk-group g-prox stagger">
-      <div class="tk-glabel"><span class="dt gray"></span>Próximos días <span class="c">${semT.length}</span></div>
-      ${semT.slice(0,8).map(tareaRow).join('') || vacio}
+    <div class="nb-cards stagger">
+      ${cards}
+      <button class="nb-add" data-toast="Se crearía una tarjeta"><span>＋</span> Nueva página</button>
     </div>
   </div>
 </div></div>`;
 };
+
+/* refresca sólo la vista de tareas, sin animación de stack */
+function refreshBoard(){
+  const v = $('#stack').lastElementChild;
+  if(!v || !v.querySelector('.nb-panel')) return;
+  v.innerHTML = VIEWS.tareas();
+  bind(v);
+  const sc = v.querySelector('.scroll'), nav = v.querySelector('.nav');
+  if(sc&&nav) sc.addEventListener('scroll',()=>nav.classList.toggle('sticky', sc.scrollTop>6),{passive:true});
+  v.querySelectorAll('.stagger > *').forEach((n,i)=>n.style.animationDelay = Math.min(i*32,300)+'ms');
+}
 
 /* ---- SUCURSALES ---- */
 VIEWS.sucursales = ()=>`
