@@ -428,6 +428,56 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
 .hint{display:flex;align-items:center;gap:8px;background:rgba(63,220,163,.1);border:1px solid rgba(63,220,163,.22);
   border-radius:11px;padding:10px 13px;font-size:12.5px;color:#9BEBCB;margin-bottom:20px}
 
+/* ============ HOJA / MODAL · Precios Llorente ============ */
+.sheet-wrap{position:absolute;inset:0;z-index:40;display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .24s}
+.sheet-wrap.on{opacity:1;pointer-events:auto}
+.sheet-wrap::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.58)}
+.sheet{position:relative;width:100%;max-height:88%;background:var(--bg);border-radius:20px 20px 0 0;
+  border:1px solid var(--border);border-bottom:0;display:flex;flex-direction:column;
+  transform:translateY(100%);transition:transform .3s var(--ease);box-shadow:0 -20px 50px rgba(0,0,0,.55)}
+.sheet-wrap.on .sheet{transform:none}
+.sheet::after{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:36px;height:4px;
+  border-radius:3px;background:var(--border)}
+.sheet-head{display:flex;align-items:flex-start;gap:10px;padding:22px 16px 12px;border-bottom:1px solid var(--line)}
+.sheet-t{display:block;font-size:16.5px;font-weight:700;color:var(--title);line-height:1.3}
+.sheet-m{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.sheet-x{margin-left:auto;width:32px;height:32px;border-radius:9px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;color:var(--muted);background:var(--surface-2);flex:0 0 32px}
+.sheet-x:active{background:var(--surface-3)}
+.sheet-scroll{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:6px 16px 18px}
+.sheet-sec{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--light);
+  margin:18px 0 10px;display:flex;align-items:center;gap:8px}
+.sheet-hint{letter-spacing:0;text-transform:none;font-weight:500;color:var(--light)}
+.sheet-foot{padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--bg)}
+
+.pl-price{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pl-cad{flex:1;min-width:0;height:44px;border-radius:10px;background:var(--surface-2);color:var(--text);
+  border:1px solid var(--line);padding:0 30px 0 11px;font:inherit;font-size:14px;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238a8a8a' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center}
+.pl-inp{flex:0 0 120px;display:flex;align-items:center;gap:5px;height:44px;border-radius:10px;
+  background:var(--surface-2);border:1px solid var(--line);padding:0 11px}
+.pl-inp span{color:var(--light);font-size:14px}
+.pl-inp input{flex:1;min-width:0;width:100%;background:none;border:none;outline:none;color:var(--title);
+  font:inherit;font-size:15px}
+.pl-inp:focus-within{border-color:var(--brand-line)}
+.pl-addprice{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--brand-bright);font-weight:600;
+  padding:9px 4px 2px}
+.pl-addprice[disabled]{color:var(--light);opacity:.45;pointer-events:none}
+
+.pl-photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pl-shot{position:relative;height:122px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#1B1B1B}
+.pl-shot img{width:100%;height:100%;object-fit:cover;display:block}
+.pl-shot-x{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:7px;background:rgba(0,0,0,.62);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px}
+.pl-shot.add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  border:1px dashed var(--border);color:var(--brand-bright);font-size:12.5px;font-weight:500;
+  background:repeating-linear-gradient(45deg,#1D1D1D 0 8px,#212121 8px 16px)}
+.pl-shot.add .cam{font-size:26px;line-height:1}
+.pl-shot.add:active{background:#242424}
+
 @media (max-width:900px){ .stage .caption{display:none} }
 .device{transition:transform .15s var(--ease)}
 @media (max-width:560px){
@@ -512,6 +562,12 @@ button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:p
             Versión 0.4 · boceto sin conexión a servidores</p>
         </div>
       </div>
+
+      <!-- ===== HOJA / MODAL · Precios Llorente ===== -->
+      <div class="sheet-wrap" id="sheetWrap">
+        <div class="sheet" id="sheetBody"></div>
+      </div>
+      <input type="file" id="plFile" accept="image/*" capture="environment" hidden>
 
       <div class="toast" id="toast"><span class="d"></span><span id="toastTxt"></span></div>
     </div>
@@ -710,6 +766,7 @@ function render(mode){
 function bind(el){
   el.querySelectorAll('[data-go]').forEach(n=>n.addEventListener('click',()=>push(n.dataset.go, n.dataset.p)));
   el.querySelectorAll('[data-back]').forEach(n=>n.addEventListener('click',pop));
+  el.querySelectorAll('[data-pl]').forEach(n=>n.addEventListener('click',()=>plOpen(+n.dataset.pl)));
   el.querySelectorAll('[data-menu]').forEach(n=>n.addEventListener('click',openDrawer));
   el.querySelectorAll('[data-toast]').forEach(n=>n.addEventListener('click',()=>toast(n.dataset.toast)));
   el.querySelectorAll('[data-col]').forEach(n=>n.addEventListener('click',()=>{
@@ -829,11 +886,21 @@ const boardCard = ({id,s,c,resto,total,st})=>{
 VIEWS.tareas = ()=>{
   const items = boardItems();
   const cnt = [0,1,2].map(k=>items.filter(it=>it.st===k).length);
+  cnt[0] += 1;   // tarea fija: Precios Llorente
   if(tareaCol<0) tareaCol=0; if(tareaCol>2) tareaCol=2;
   const col = T_COLS[tareaCol];
   const list = items.filter(it=>it.st===tareaCol);
+  const plCard = tareaCol===0 ? `<div class="nb-card" data-go="preciosLlorente">
+      <span class="ttl"><span class="e">🏷️</span><span>Precios Llorente</span></span>
+      <span class="meta">📋 Relevamiento de precios · ${PRECIOS_LLORENTE.length} productos</span>
+      <span class="props">
+        <span class="nb-prop red">⏰ Vence hoy</span>
+        <span class="nb-prop ${plDone()===PRECIOS_LLORENTE.length?'green':'yellow'}">${plDone()}/${PRECIOS_LLORENTE.length} con precio</span>
+      </span>
+      <span class="nb-foot"><span class="nb-move">Abrir <b>→</b></span></span>
+    </div>` : '';
   const cards = list.map(boardCard).join('')
-    || `<div class="nb-empty"><span class="e">${tareaCol===2?'📭':'🎉'}</span>${tareaCol===2?'Todavía no cerraste ninguna.':'Nada pendiente en este estado.'}</div>`;
+    || (tareaCol===0 ? '' : `<div class="nb-empty"><span class="e">${tareaCol===2?'📭':'🎉'}</span>${tareaCol===2?'Todavía no cerraste ninguna.':'Nada pendiente en este estado.'}</div>`);
   return `
 ${navTop('Tareas','Asignadas a Yago Alonso')}
 <div class="scroll"><div class="pad">
@@ -857,11 +924,11 @@ ${navTop('Tareas','Asignadas a Yago Alonso')}
   </div>
 
   <div class="nb-panel ${col.cls}">
-    <div class="nb-panel-h">${col.lbl} · ${list.length}
+    <div class="nb-panel-h">${col.lbl} · ${list.length + (tareaCol===0?1:0)}
       <span class="sp"><button data-toast="Opciones">···</button><button data-toast="Nueva tarjeta">＋</button></span>
     </div>
     <div class="nb-cards stagger">
-      ${cards}
+      ${plCard}${cards}
       <button class="nb-add" data-toast="Se crearía una tarjeta"><span>＋</span> Nueva página</button>
     </div>
   </div>
@@ -1188,6 +1255,196 @@ ${navBack('Ajustes y ayuda','')}
     <button class="item" data-toast="Sesión cerrada"><span class="ico">🚪</span><span class="b"><span class="t" style="color:var(--t-red)">Cerrar sesión</span></span><span class="r">›</span></button>
   </div>
 </div></div>`;
+
+/* ==================== PRECIOS LLORENTE ==================== */
+const PRECIOS_LLORENTE = [
+  {n:'FEDERICO DE ALVEAR BLANCO DULCE 750 cc', ean:'7791670027086'},
+  {n:'FEDERICO DE ALVEAR EXTRA BRUT 750 cc',   ean:'7791670027604'},
+  {n:'FEDERICO DE ALVEAR EXTRA DULCE 750 cc',  ean:'7791670026621'},
+  {n:'GREEN HILLS BOLDO 20 saq',               ean:'7790480089703'},
+  {n:'GREEN HILLS CLASSIC 25 saq',             ean:'7790480008254'},
+  {n:'GREEN HILLS CLASSIC 50 saq',             ean:'7790480008261'},
+  {n:'GREEN HILLS FRUTILLA 20 saq',            ean:'7790480089666'},
+  {n:'GREEN HILLS MANZANILLA 20 saq',          ean:'7790480089697'},
+  {n:'GREEN HILLS MOMENTOS TE VERDE 25 saq',   ean:'7790480089871'},
+  {n:'YERBA LA TRANQUERA LIVIANA 500 gr',      ean:'7790480089956'},
+  {n:'YERBA LA TRANQUERA SELECCION ESPECIAL 1 kg', ean:'7790480089741'},
+  {n:'LA TRANQUERA SELECCION ESPECIAL 500 gr', ean:'7790480089734'},
+  {n:'LA TRANQUERA SELECCION ESPECIAL SUAVE 1 kg',  ean:'7790480089949'},
+  {n:'LA TRANQUERA SELECCION ESPECIAL SUAVE 500 gr',ean:'7790480089932'},
+  {n:'LA TRANQUERA SUAVE 25 saq',              ean:'7790480090099'},
+  {n:'LA TRANQUERA TRADICIONAL 25 saq',        ean:'7790480090006'},
+  {n:'LA TRANQUERA TRADICIONAL 50 saq',        ean:'7790480090013'},
+  {n:'THE BREEADER CHOICE WHISKY CRIADORES 1000 cc', ean:'7790480001613'},
+  {n:'VIÑAS DE ALVEAR CLASICO BLANCO 1125 cc', ean:'7791670027505'},
+  {n:'VIÑAS DE ALVEAR CLASICO TINTO 1125 cc',  ean:'7791670027482'},
+  {n:'VINO CANTUS MALBEC',                     ean:''},
+];
+const TIPOS_PRECIO_LLORENTE = ['Mayorista','Minorista','Club Super','Oferta','Otro'];
+const preciosState = new Map();   // ean|nombre -> {prices:[{cad,val}], photos:[a,b]}
+const plKey = p => p.ean || p.n;
+function plGet(p){
+  let st = preciosState.get(plKey(p));
+  if(!st){
+    st = {prices:[{cad:'Mayorista',val:''},{cad:'Minorista',val:''}], photos:[null,null]};
+    preciosState.set(plKey(p), st);
+  }
+  return st;
+}
+function plComplete(p){ const st = preciosState.get(plKey(p)); return !!st && st.prices.filter(x=>x.val).length>=2; }
+function plDone(){ return PRECIOS_LLORENTE.filter(plComplete).length; }
+
+let plIdx = null, plPhotoK = null;
+
+VIEWS.preciosLlorente = ()=>{
+  const tot = PRECIOS_LLORENTE.length, done = plDone(), pc = Math.round(done/tot*100);
+  return `
+${navBack('Precios Llorente','Relevamiento de precios')}
+<div class="scroll"><div class="pad">
+  <span class="big-emoji">🏷️</span>
+  <h2 class="h1">Precios Llorente</h2>
+  <div class="row-pills">
+    <span class="pill brand">Llorente</span>
+    <span class="pill ghost">${tot} productos</span>
+    <span class="pill ${done===tot?'green':'yellow'}">${done} con precio</span>
+  </div>
+  <p class="lead" id="plProg">${done} de ${tot} productos con precio cargado</p>
+  <div class="bar"><i id="plBar" data-w="${pc}"></i></div>
+
+  <div class="callout brand"><span class="e">🏷️</span><div>Tocá un producto para abrir el formulario. Cargá <b>2 o 3 precios</b> según el tipo (<b>mayorista</b>, <b>minorista</b>, <b>club super</b>…) y sumá <b>2 fotos</b> de góndola o etiqueta con la <b>📷 cámara</b>.</div></div>
+
+  <div class="sec">Listado de productos <span class="n">${done}/${tot}</span></div>
+  <div class="list stagger" id="plList">
+    ${PRECIOS_LLORENTE.map((p,i)=>plListRow(p,i)).join('')}
+  </div>
+</div>
+<div class="sticky-cta">
+  <button class="btn" id="plCta" data-toast="Precios y formularios enviados ✓">Completar precios y formularios</button>
+</div>
+</div>`;
+};
+
+function plListRow(p,i){
+  const st = preciosState.get(plKey(p));
+  const nP = st ? st.prices.filter(x=>x.val).length : 0;
+  const nF = st ? st.photos.filter(Boolean).length : 0;
+  const ok = nP>=2;
+  const meta = [
+    p.ean ? 'EAN '+p.ean : 'Sin EAN',
+    nP ? nP+' precio'+(nP>1?'s':'') : 'sin precio',
+    nF ? nF+' foto'+(nF>1?'s':'') : null,
+  ].filter(Boolean).join(' · ');
+  return `<button class="item" data-pl="${i}">
+    <span class="ico">${ok?'✅':'🏷️'}</span>
+    <span class="b"><span class="t">${esc(p.n)}</span><span class="m">${esc(meta)}</span></span>
+    <span class="r">${ok?'<span class="pill green">OK</span>':'<span class="pill ghost">Cargar</span>'}›</span>
+  </button>`;
+}
+
+function plSheetHTML(p){
+  const st = plGet(p);
+  return `
+  <div class="sheet-head">
+    <div><span class="sheet-t">${esc(p.n)}</span>
+      <span class="sheet-m">${p.ean ? 'EAN '+p.ean : 'Sin código EAN'}</span></div>
+    <button class="sheet-x" data-plx>✕</button>
+  </div>
+  <div class="sheet-scroll">
+    <div class="sheet-sec">Precios por tipo <span class="sheet-hint">mayorista · minorista · club super</span></div>
+    <div id="plPrices">${st.prices.map(plPriceRow).join('')}</div>
+    <button class="pl-addprice" data-pladd ${st.prices.length>=3?'disabled':''}>＋ Agregar otro precio</button>
+
+    <div class="sheet-sec">Fotos <span class="sheet-hint">góndola o etiqueta</span></div>
+    <div class="pl-photos">${[0,1].map(k=>plPhotoSlot(st.photos[k],k)).join('')}</div>
+  </div>
+  <div class="sheet-foot"><button class="btn" data-plsave>Guardar precios y fotos</button></div>`;
+}
+function plPriceRow(pr,k){
+  return `<div class="pl-price" data-k="${k}">
+    <select class="pl-cad">${TIPOS_PRECIO_LLORENTE.map(c=>`<option ${c===pr.cad?'selected':''}>${esc(c)}</option>`).join('')}</select>
+    <div class="pl-inp"><span>$</span><input class="pl-val" inputmode="decimal" placeholder="0,00" value="${esc(pr.val||'')}"></div>
+  </div>`;
+}
+function plPhotoSlot(src,k){
+  return src
+    ? `<div class="pl-shot"><img src="${src}" alt="Foto ${k+1}"><button class="pl-shot-x" data-plrm="${k}">✕</button></div>`
+    : `<button class="pl-shot add" data-plcam="${k}"><span class="cam">📷</span>Foto ${k+1}</button>`;
+}
+
+function plReadSheet(){
+  if(plIdx==null) return;
+  const st = plGet(PRECIOS_LLORENTE[plIdx]);
+  const rows = [...$('#sheetBody').querySelectorAll('.pl-price')];
+  if(rows.length) st.prices = rows.map(r=>({
+    cad: r.querySelector('.pl-cad').value,
+    val: r.querySelector('.pl-val').value.trim(),
+  }));
+}
+function plOpen(i){
+  plIdx = i;
+  $('#sheetBody').innerHTML = plSheetHTML(PRECIOS_LLORENTE[i]);
+  $('#sheetWrap').classList.add('on');
+}
+function plClose(){ $('#sheetWrap').classList.remove('on'); plIdx = null; plPhotoK = null; }
+function plRerender(){ if(plIdx!=null) $('#sheetBody').innerHTML = plSheetHTML(PRECIOS_LLORENTE[plIdx]); }
+
+function refreshPl(){
+  const v = $('#stack').lastElementChild;
+  if(!v || !v.querySelector('#plList')) return;
+  v.innerHTML = VIEWS.preciosLlorente();
+  bind(v);
+  const sc = v.querySelector('.scroll'), nav = v.querySelector('.nav');
+  if(sc&&nav) sc.addEventListener('scroll',()=>nav.classList.toggle('sticky', sc.scrollTop>6),{passive:true});
+  requestAnimationFrame(()=>{
+    v.querySelectorAll('.bar i').forEach(b=>b.style.width = b.dataset.w+'%');
+    v.querySelectorAll('.stagger > *').forEach((n,i)=>n.style.animationDelay = Math.min(i*26,300)+'ms');
+  });
+}
+
+$('#sheetWrap').addEventListener('click',e=>{ if(e.target===$('#sheetWrap')) plClose(); });
+$('#sheetBody').addEventListener('click',e=>{
+  const t = e.target.closest('[data-plx],[data-pladd],[data-plsave],[data-plcam],[data-plrm]');
+  if(!t) return;
+  if(t.hasAttribute('data-plx')){ plClose(); return; }
+  if(t.hasAttribute('data-pladd')){
+    plReadSheet();
+    const st = plGet(PRECIOS_LLORENTE[plIdx]);
+    if(st.prices.length<3){
+      st.prices.push({cad: TIPOS_PRECIO_LLORENTE[st.prices.length] || 'Otro', val:''});
+      plRerender();
+    }
+    return;
+  }
+  if(t.hasAttribute('data-plcam')){
+    plReadSheet(); plPhotoK = +t.dataset.plcam; $('#plFile').click(); return;
+  }
+  if(t.hasAttribute('data-plrm')){
+    plReadSheet();
+    plGet(PRECIOS_LLORENTE[plIdx]).photos[+t.dataset.plrm] = null;
+    plRerender(); return;
+  }
+  if(t.hasAttribute('data-plsave')){
+    plReadSheet();
+    const p = PRECIOS_LLORENTE[plIdx], st = plGet(p);
+    const nP = st.prices.filter(x=>x.val).length, nF = st.photos.filter(Boolean).length;
+    plClose();
+    toast(nP ? `✓ Guardado · ${nP} precio${nP>1?'s':''}${nF?` y ${nF} foto${nF>1?'s':''}`:''}` : 'Guardado sin precios cargados');
+    refreshPl();
+    return;
+  }
+});
+$('#plFile').addEventListener('change',e=>{
+  const f = e.target.files && e.target.files[0];
+  e.target.value = '';
+  if(!f || plIdx==null || plPhotoK==null) return;
+  const rd = new FileReader();
+  rd.onload = ()=>{
+    plGet(PRECIOS_LLORENTE[plIdx]).photos[plPhotoK] = rd.result;
+    plRerender();
+    toast('📷 Foto agregada');
+  };
+  rd.readAsDataURL(f);
+});
 
 /* ==================== INGRESO ==================== */
 const login = $('#login'), lgBtn = $('#lgBtn');
